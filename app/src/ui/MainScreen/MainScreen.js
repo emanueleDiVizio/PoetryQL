@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { View, Dimensions } from 'react-native';
+import { View } from 'react-native';
 
 import PaintingBackgroundView, { Painting } from '../PaintingBackground';
 import PoetsList from '../PoetsList';
 import { Poet } from '../PoetsList/types';
-
-const { height, width } = Dimensions.get('window');
+import PoemsContainer from '../PoemsContainer';
 
 type Props = {
   painting: Painting,
@@ -14,34 +13,31 @@ type Props = {
 
 type State = {
   displayingPoem: boolean,
+  name: string,
 };
 class MainScreen extends Component<Props, State> {
   state = {
     displayingPoem: false,
+    name: '',
   };
 
   render() {
-    const { painting, poets } = this.props;
+    const { painting, poets, poem } = this.props;
     return (
       <View>
         <PaintingBackgroundView data={painting} />
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width,
-            height,
-            alignItems: 'center',
-            justifyContent: 'center',
+        <PoetsList
+          data={poets}
+          onPoetPress={(name) => {
+            poem.refetch({
+              author: name,
+              run: true,
+            });
+            this.setState({ displayingPoem: true, name });
           }}
-        >
-          <PoetsList
-            data={poets}
-            onPoetPress={name => this.setState({ displayingPoem: true })}
-            show={!this.state.displayingPoem}
-          />
-        </View>
+          show={!this.state.displayingPoem}
+        />
+        <PoemsContainer data={poem} name={this.state.name} show={this.state.displayingPoem} />
       </View>
     );
   }

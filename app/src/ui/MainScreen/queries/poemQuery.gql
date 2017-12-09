@@ -1,0 +1,7 @@
+query Poem($author: String!, $run: Boolean!) {
+  poem(author: $author) @include(if: $run) {
+    lines
+    title
+    author
+  }
+}

@@ -25,7 +25,7 @@ const WrappedComponent = (props: Props) => {
     loadingComponent, errorComponent, DataComponent, ...otherProps
   } = props;
   const { data } = otherProps;
-
+  console.log(data.error);
   if (data.error) {
     return renderComponentAndInjectProps(errorComponent, data.error);
   } else if (data.loading) {
