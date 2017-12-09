@@ -1,0 +1,5 @@
+query getPoets($pageSize: Int!, $offset: Int!) {
+  authors(size: $pageSize, offset: $offset) {
+    name
+  }
+}
