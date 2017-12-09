@@ -1,17 +1,21 @@
 //  @ flow
 import React from 'react';
 import { FlatList } from 'react-native';
-import PoetItem from './PoetItem';
+import PoetItem from '../PoetItem';
+import apolloWrapper from '../../config/apollo/hoc';
 
 type Props = {
   authors: string[],
   onPoetPress: Function,
 };
 
-export default (props: Props) => (
+const PoetsList = ({ authors, onPoetPress }: Props) => (
   <FlatList
-    data={props.authors}
+    style={{ marginTop: 24 }}
+    data={authors}
     numColumns={2}
-    renderItem={({ item }) => <PoetItem poet={item} onPoetPress={props.onPoetPress} />}
+    renderItem={({ item }) => <PoetItem poet={item} onPoetPress={onPoetPress} />}
   />
 );
+
+export default apolloWrapper(PoetsList);

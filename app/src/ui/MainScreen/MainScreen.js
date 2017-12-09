@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, ToastAndroid } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 import PaintingBackgroundView, { Painting } from '../PaintingBackground';
 import PoetsList from '../PoetsList';
@@ -10,13 +10,13 @@ type Props = {
   painting: Painting,
 };
 
-const MainScreen = ({ painting }: Props) => (
+const MainScreen = ({ painting, poets }: Props) => (
   <View>
-    <PaintingBackgroundView painting={painting} />
+    <PaintingBackgroundView data={painting} />
     <View
       style={{
         position: 'absolute',
-        top: 64,
+        top: 0,
         left: 0,
         width,
         height,
@@ -24,7 +24,7 @@ const MainScreen = ({ painting }: Props) => (
         justifyContent: 'center',
       }}
     >
-      <PoetsList onPoetPress={name => ToastAndroid.show(name)} />
+      <PoetsList data={poets} onPoetPress={name => alert(name)} />
     </View>
   </View>
 );

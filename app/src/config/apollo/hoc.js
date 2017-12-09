@@ -1,7 +1,5 @@
 // @ flow
 import React, { ReactChild } from 'react';
-
-import { graphql } from 'react-apollo';
 import { View } from 'react-native';
 
 type Data = {
@@ -24,15 +22,19 @@ const renderComponentAndInjectProps = (Component, props) => {
 
 const WrappedComponent = (props: Props) => {
   const {
-    data, loadingComponent, errorComponent, DataComponent,
+    loadingComponent, errorComponent, DataComponent, ...otherProps
   } = props;
+  const { data } = otherProps;
 
   if (data.error) {
     return renderComponentAndInjectProps(errorComponent, data.error);
   } else if (data.loading) {
     return renderComponentAndInjectProps(loadingComponent, data.loading);
   }
-  return <DataComponent {...data} />;
+  // console.log(data);
+
+  const childProps = { ...data, ...otherProps };
+  return <DataComponent {...childProps} />;
 };
 
 const GraphQLWrapper = (DataComponent, ErrorComponent, LoadingComponent) => props => (
@@ -44,5 +46,4 @@ const GraphQLWrapper = (DataComponent, ErrorComponent, LoadingComponent) => prop
   />
 );
 
-export default (conf, DataComponent, ErrorComponent, LoadingComponent) =>
-  graphql(conf.query, conf.config)(GraphQLWrapper(DataComponent, ErrorComponent, LoadingComponent));
+export default GraphQLWrapper;

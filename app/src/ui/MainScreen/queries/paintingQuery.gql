@@ -1,4 +1,4 @@
-query mainScreenQuery {
+query paintingQuery {
   painting {
     title
     painter

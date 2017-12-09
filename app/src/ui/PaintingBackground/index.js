@@ -1,6 +1,9 @@
 //  @ flow
+
 import React from 'react';
+
 import { Image, Dimensions } from 'react-native';
+import apolloWrapper from '../../config/apollo/hoc';
 
 const { height, width } = Dimensions.get('window');
 
@@ -14,6 +17,8 @@ type Props = {
   painting: Painting,
 };
 
-export default ({ painting }: Props) => (
+const PaintingBackground = ({ painting }: Props) => (
   <Image source={{ uri: painting.image }} style={{ width, height }} />
 );
+
+export default apolloWrapper(PaintingBackground);
