@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, ToastAndroid } from 'react-native';
 
 import PaintingBackgroundView from '../PaintingBackground';
 import PoetsList from '../PoetsList';
@@ -17,9 +17,10 @@ const MainScreen = () => (
         width,
         height,
         alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <PoetsList />
+      <PoetsList onPoetPress={name => ToastAndroid.show(name)} />
     </View>
   </View>
 );

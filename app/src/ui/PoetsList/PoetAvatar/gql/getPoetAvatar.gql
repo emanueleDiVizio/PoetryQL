@@ -1,5 +1,0 @@
-query getPoetAvatar($name: String!) {
-  author(name: $name) {
-    portrait
-  }
-}
