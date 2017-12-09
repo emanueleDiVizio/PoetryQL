@@ -1,4 +1,4 @@
-query getRandomPainting {
+query mainScreenQuery {
   painting {
     title
     painter
