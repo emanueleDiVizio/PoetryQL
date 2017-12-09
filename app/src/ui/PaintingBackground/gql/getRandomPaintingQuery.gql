@@ -1,0 +1,7 @@
+query getRandomPainting {
+  painting {
+    title
+    painter
+    image
+  }
+}
