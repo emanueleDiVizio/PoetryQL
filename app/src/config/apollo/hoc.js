@@ -44,5 +44,5 @@ const GraphQLWrapper = (DataComponent, ErrorComponent, LoadingComponent) => prop
   />
 );
 
-export default (query, DataComponent, ErrorComponent, LoadingComponent) =>
-  graphql(query)(GraphQLWrapper(DataComponent, ErrorComponent, LoadingComponent));
+export default (conf, DataComponent, ErrorComponent, LoadingComponent) =>
+  graphql(conf.query, conf.options)(GraphQLWrapper(DataComponent, ErrorComponent, LoadingComponent));
