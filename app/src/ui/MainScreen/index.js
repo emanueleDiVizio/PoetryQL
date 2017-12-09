@@ -1,27 +1,7 @@
-import React from 'react';
-import { View, Dimensions } from 'react-native';
+//  @ flow
+import apollo from '../../config/apollo/hoc';
 
-import PaintingBackgroundView from '../PaintingBackground';
-import PoetsList from '../PoetsList';
+import mainScreenQuery from './gql/mainScreenQuery.gql';
+import MainScreen from './MainScreen';
 
-const { height, width } = Dimensions.get('window');
-
-const MainScreen = () => (
-  <View>
-    <PaintingBackgroundView />
-    <View
-      style={{
-        position: 'absolute',
-        top: 64,
-        left: 0,
-        width,
-        height,
-        alignItems: 'center',
-      }}
-    >
-      <PoetsList />
-    </View>
-  </View>
-);
-
-export default MainScreen;
+export default apollo({ query: mainScreenQuery }, MainScreen);

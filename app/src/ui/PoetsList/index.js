@@ -1,17 +1,17 @@
 //  @ flow
-import apollo from '../../config/apollo/hoc';
+import React from 'react';
+import { FlatList } from 'react-native';
+import PoetItem from './PoetItem';
 
-import getPoetsNames from './gql/getPoetsNames.gql';
-import PoetsList from './PoetsList';
+type Props = {
+  authors: string[],
+  onPoetPress: Function,
+};
 
-export default apollo(
-  {
-    query: getPoetsNames,
-    options: {
-      options: {
-        variables: { offset: 0, pageSize: 2 },
-      },
-    },
-  },
-  PoetsList,
+export default (props: Props) => (
+  <FlatList
+    data={props.authors}
+    numColumns={2}
+    renderItem={({ item }) => <PoetItem poet={item} onPoetPress={props.onPoetPress} />}
+  />
 );
