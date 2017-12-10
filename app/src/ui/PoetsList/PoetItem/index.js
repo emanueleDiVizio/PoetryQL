@@ -11,10 +11,10 @@ type Props = {
   onPoetPress: Function,
 };
 
-export default ({ poet: { name, portrait }, onPoetPress, size }: Props) => (
+export default ({ poet: { name }, onPoetPress, size }: Props) => (
   <TouchableOpacity onPress={() => onPoetPress(name)}>
     <View style={[Styles.containerView, { height: size * 1.5 }]}>
-      <PoetAvatar portrait={portrait} size={size} />
+      <PoetAvatar name={name} size={size} />
       <Text style={Styles.text}>{name}</Text>
     </View>
   </TouchableOpacity>

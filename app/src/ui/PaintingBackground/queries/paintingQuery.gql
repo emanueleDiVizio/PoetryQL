@@ -1,7 +1,9 @@
 query paintingQuery {
   painting {
     title
-    painter
+    painter {
+      name
+    }
     image
   }
 }

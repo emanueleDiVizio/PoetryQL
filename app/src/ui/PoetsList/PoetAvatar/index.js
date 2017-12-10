@@ -1,18 +1,9 @@
 //  @ flow
-import React from 'react';
-import { Image } from 'react-native';
+import { graphql } from 'react-apollo';
 
-type Props = {
-  portrait: string,
-  size: number,
-};
-export default ({ portrait, size }: Props) => (
-  <Image
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-    }}
-    source={{ uri: portrait }}
-  />
-);
+import PoetAvatar from './PoetAvatar';
+import poetPortraitQuery from './queries/poetPortraitQuery.gql';
+
+export default graphql(poetPortraitQuery, {
+  options: ({ name }) => ({ variables: { name } }),
+})(PoetAvatar);
