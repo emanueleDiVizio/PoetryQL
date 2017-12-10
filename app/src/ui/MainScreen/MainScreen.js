@@ -25,7 +25,11 @@ class MainScreen extends Component<Props, State> {
           }}
           show={this.state.shownPoet === ''}
         />
-        <PoemsContainer name={this.state.shownPoet} show={this.state.shownPoet !== ''} />
+        <PoemsContainer
+          name={this.state.shownPoet}
+          show={this.state.shownPoet !== ''}
+          onClose={() => this.setState({ shownPoet: '' })}
+        />
       </View>
     );
   }

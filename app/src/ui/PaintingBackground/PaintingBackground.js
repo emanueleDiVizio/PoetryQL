@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-import { Image, Dimensions, View } from 'react-native';
-import apolloWrapper from '../../config/apollo/hoc';
-
-const { height, width } = Dimensions.get('window');
+import { Image, View, Platform } from 'react-native';
+import { BlurView } from 'expo';
+import Styles from './styles';
 
 export type Painting = {
   image: string,
@@ -23,19 +22,9 @@ type Props = {
 
 const PaintingBackground = ({ data: { painting } }: Props) => (
   <View>
-    <Image source={{ uri: painting.image }} style={{ width, height }} />
-    <View
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width,
-        height,
-        backgroundColor: 'black',
-        opacity: 0.6,
-      }}
-    />
+    <Image source={{ uri: painting.image }} style={Styles.image} />
+    <BlurView tint="dark" intensity={Platform.OS === 'ios' ? 80 : 100} style={Styles.blurView} />
   </View>
 );
 
-export default apolloWrapper(PaintingBackground);
+export default PaintingBackground;
