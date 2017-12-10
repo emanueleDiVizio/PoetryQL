@@ -6,6 +6,7 @@ type Data = {
   loading: boolean,
   error: string,
 };
+
 type Props = {
   data: Data,
   loadingComponent: ReactChild,
@@ -24,17 +25,16 @@ const WrappedComponent = (props: Props) => {
   const {
     loadingComponent, errorComponent, DataComponent, ...otherProps
   } = props;
-  const { data } = otherProps;
-  console.log(data.error);
-  if (data.error) {
-    return renderComponentAndInjectProps(errorComponent, data.error);
-  } else if (data.loading) {
-    return renderComponentAndInjectProps(loadingComponent, data.loading);
-  }
-  // console.log(data);
 
-  const childProps = { ...data, ...otherProps };
-  return <DataComponent {...childProps} />;
+  const { data: { error, loading } } = otherProps;
+
+  if (error) {
+    return renderComponentAndInjectProps(errorComponent, error);
+  } else if (loading) {
+    return renderComponentAndInjectProps(loadingComponent, loading);
+  }
+
+  return <DataComponent {...otherProps} />;
 };
 
 const GraphQLWrapper = (DataComponent, ErrorComponent, LoadingComponent) => props => (
