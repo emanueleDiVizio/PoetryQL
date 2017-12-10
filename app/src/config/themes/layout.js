@@ -14,4 +14,9 @@ export default {
     width,
     height,
   },
+  fulllWidth: {
+    width,
+  },
+  fullHeight: { height },
+  screen: { width, height },
 };

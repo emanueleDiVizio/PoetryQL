@@ -3,7 +3,7 @@ import React from 'react';
 import { FlatList, View } from 'react-native';
 import PoetItem from './PoetItem';
 import { Poet } from './types';
-import Styles from './styles';
+import Styles, { itemSize } from './styles';
 
 type Data = {
   authors: Poet[],
@@ -38,7 +38,9 @@ export default ({ data, onPoetPress, show }: Props) =>
         data={data.authors}
         numColumns={2}
         keyExtractor={(index, item) => index}
-        renderItem={({ item }) => <PoetItem poet={item} onPoetPress={onPoetPress} />}
+        renderItem={({ item }) => (
+          <PoetItem poet={item} onPoetPress={onPoetPress} size={itemSize} />
+        )}
         onEndReachedThreshold={1}
         onEndReached={() => fetchMorePoets(data)}
       />

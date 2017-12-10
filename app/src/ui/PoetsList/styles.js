@@ -9,6 +9,8 @@ export default StyleSheet.create({
   },
   list: { marginTop: 24 },
   contentContainer: {
-    marginTop: 12,
+    marginTop: '10%',
   },
 });
+
+export const itemSize = Layout.screen.height / 6;
