@@ -9,12 +9,13 @@ const baseText = {
 export default StyleSheet.create({
   overlayContainer: {
     ...Layout.overlayView,
+    top: 24,
   },
 
-  icon: { position: 'absolute', top: 48, right: 32 },
+  icon: { position: 'absolute', top: 24, right: 24 },
   topTextContainer: {
     flex: 0,
-    marginTop: 48,
+    marginTop: '5%',
     alignItems: 'center',
   },
   authorText: {
@@ -28,18 +29,19 @@ export default StyleSheet.create({
   },
   poemScrollContainer: {
     flex: 1,
-    marginTop: 24,
+    marginTop: '5%',
     alignItems: 'center',
   },
   poemContainer: {
-    marginTop: 16,
-    marginBottom: 52,
-    marginLeft: 24,
-    marginRight: 24,
+    ...Layout.fulllWidth,
+    paddingTop: '5%',
+    paddingBottom: '5%',
+    paddingLeft: '10%',
+    paddingRight: '10%',
   },
   poemLine: {
     ...baseText,
     ...Fonts.style.description,
-    marginBottom: 4,
+    marginBottom: 6,
   },
 });

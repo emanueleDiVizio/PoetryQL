@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { Fonts } from '../../../config/themes/index';
+import { Fonts, Layout } from '../../../config/themes/index';
+
 
 export default StyleSheet.create({
   containerView: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 16,
-    marginBottom: 16,
+    marginBottom: '8%',
+    width: Layout.screen.width / 2,
   },
   text: {
-    marginTop: 8,
+    marginTop: '2%',
     color: 'white',
     ...Fonts.style.description,
     textAlign: 'center',

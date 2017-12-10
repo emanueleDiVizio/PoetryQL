@@ -23,7 +23,7 @@ export default ({ data: { poem }, show, onClose }: Props) => {
   if (show) {
     return (
       <View style={Styles.overlayContainer}>
-        <MaterialIcons style={Styles.icon} name="close" size={25} color="white" onPress={onClose} />
+        <MaterialIcons style={Styles.icon} name="close" size={32} color="white" onPress={onClose} />
 
         <View style={Styles.topTextContainer}>
           <Text style={Styles.authorText}>{poem.author}</Text>
