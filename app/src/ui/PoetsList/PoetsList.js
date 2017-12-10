@@ -1,10 +1,9 @@
 //  @ flow
 import React from 'react';
-import { FlatList, View, Dimensions } from 'react-native';
+import { FlatList, View } from 'react-native';
 import PoetItem from './PoetItem';
 import { Poet } from './types';
-
-const { height, width } = Dimensions.get('window');
+import Styles from './styles';
 
 type Data = {
   authors: Poet[],
@@ -32,24 +31,15 @@ const fetchMorePoets = (data) => {
 
 export default ({ data, onPoetPress, show }: Props) =>
   (show ? (
-    <View
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width,
-        height,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <View style={Styles.containerView}>
       <FlatList
-        style={{ marginTop: 24 }}
+        style={Styles.list}
+        contentContainerStyle={Styles.contentContainer}
         data={data.authors}
         numColumns={2}
         keyExtractor={(index, item) => index}
         renderItem={({ item }) => <PoetItem poet={item} onPoetPress={onPoetPress} />}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={1}
         onEndReached={() => fetchMorePoets(data)}
       />
     </View>
