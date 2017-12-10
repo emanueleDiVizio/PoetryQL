@@ -1,43 +1,35 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-import PaintingBackgroundView, { Painting } from '../PaintingBackground';
+import PaintingBackgroundView from '../PaintingBackground';
 import PoetsList from '../PoetsList';
-import { Poet } from '../PoetsList/types';
 import PoemsContainer from '../PoemsContainer';
 
-type Props = {
-  painting: Painting,
-  poets: Poet,
-};
+type Props = {};
 
 type State = {
-  displayingPoem: boolean,
-  name: string,
+  shownPoet: string,
 };
 class MainScreen extends Component<Props, State> {
   state = {
-    displayingPoem: false,
-    name: '',
+    shownPoet: '',
   };
 
   render() {
-    const { painting, poets, poem } = this.props;
     return (
       <View>
-        <PaintingBackgroundView data={painting} />
+        <PaintingBackgroundView />
         <PoetsList
-          data={poets}
           onPoetPress={(name) => {
-            poem.refetch({
-              author: name,
-              run: true,
-            });
-            this.setState({ displayingPoem: true, name });
+            this.setState({ shownPoet: name });
           }}
-          show={!this.state.displayingPoem}
+          show={this.state.shownPoet === ''}
         />
-        <PoemsContainer data={poem} name={this.state.name} show={this.state.displayingPoem} />
+        <PoemsContainer
+          name={this.state.shownPoet}
+          show={this.state.shownPoet !== ''}
+          onClose={() => this.setState({ shownPoet: '' })}
+        />
       </View>
     );
   }

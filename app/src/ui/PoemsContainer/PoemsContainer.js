@@ -1,60 +1,44 @@
 //  @ flow
 import React from 'react';
-import { View, Text, Dimensions, ScrollView } from 'react-native';
-
-const { height, width } = Dimensions.get('window');
+import { View, Text, ScrollView } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Styles from './styles';
 
 type Poem = {
   lines: string[],
   title: string,
   author: string,
 };
-type Props = {
+
+type Data = {
   poem: Poem,
+};
+type Props = {
+  data: Data,
   show: boolean,
+  onClose: Function,
 };
 
-export default ({ poem, show }: Props) => {
+export default ({ data: { poem }, show, onClose }: Props) => {
   if (show) {
     return (
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width,
-          height,
-        }}
-      >
-        <View
-          style={{
-            flex: 0,
-            marginTop: 48,
-            marginLeft: 64,
-            marginRight: 64,
-            alignItems: 'center',
-          }}
-        >
-          <Text style={{ color: 'white', textAlign: 'center' }}>{poem.author}</Text>
+      <View style={Styles.overlayContainer}>
+        <MaterialIcons style={Styles.icon} name="close" size={25} color="white" onPress={onClose} />
 
-          <Text style={{ color: 'white', textAlign: 'center' }}>{poem.title}</Text>
+        <View style={Styles.topTextContainer}>
+          <Text style={Styles.authorText}>{poem.author}</Text>
+
+          <Text style={Styles.titleText}>{poem.title}</Text>
         </View>
-        <View
-          style={{
-            flex: 1,
-            marginTop: 24,
-            alignItems: 'center',
-          }}
-        >
+        <View style={Styles.poemScrollContainer}>
           <ScrollView>
-            <View
-              style={{
-                height: 52,
-              }}
-            />
-            {poem.lines.map(line => (
-              <Text style={{ color: 'white', textAlign: 'center' }}>{line}</Text>
-            ))}
+            <View style={Styles.poemContainer}>
+              {poem.lines.map((line, index) => (
+                <Text style={Styles.poemLine} key={index}>
+                  {line}
+                </Text>
+              ))}
+            </View>
           </ScrollView>
         </View>
       </View>
