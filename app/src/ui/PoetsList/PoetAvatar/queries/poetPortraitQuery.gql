@@ -1,0 +1,7 @@
+query PoetPortrait($name: String!) {
+  author(name: $name) {
+    portrait {
+      image
+    }
+  }
+}

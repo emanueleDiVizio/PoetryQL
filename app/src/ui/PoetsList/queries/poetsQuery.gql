@@ -1,6 +1,5 @@
 query Authors($size: Int!, $offset: Int!) {
   authors(size: $size, offset: $offset) {
     name
-    portrait
   }
 }
