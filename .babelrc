@@ -1,9 +1,5 @@
 {
   "presets": ["babel-preset-expo", "flow"],
-  "env": {
-    "development": {
-      "plugins": ["transform-react-jsx-source", "babel-plugin-inline-import-graphql-ast"]
-    }
-  },
+  "plugins": ["transform-react-jsx-source", "babel-plugin-inline-import-graphql-ast"],
   "retainLines": true
 }
