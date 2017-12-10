@@ -6,13 +6,31 @@ import { Poet } from './types';
 
 const { height, width } = Dimensions.get('window');
 
-type Props = {
+type Data = {
   authors: Poet[],
+};
+
+type Props = {
+  data: Data,
   onPoetPress: Function,
   show: boolean,
 };
 
-export default ({ authors, onPoetPress, show }: Props) =>
+const fetchMorePoets = (data) => {
+  data.fetchMore({
+    variables: { offset: data.authors.length + 1 },
+    updateQuery: (previousResult, { fetchMoreResult }) => {
+      if (!fetchMoreResult || fetchMoreResult.authors.length === 0) {
+        return previousResult;
+      }
+      return {
+        authors: previousResult.authors.concat(fetchMoreResult.authors),
+      };
+    },
+  });
+};
+
+export default ({ data, onPoetPress, show }: Props) =>
   (show ? (
     <View
       style={{
@@ -27,9 +45,12 @@ export default ({ authors, onPoetPress, show }: Props) =>
     >
       <FlatList
         style={{ marginTop: 24 }}
-        data={authors}
+        data={data.authors}
         numColumns={2}
+        keyExtractor={(index, item) => index}
         renderItem={({ item }) => <PoetItem poet={item} onPoetPress={onPoetPress} />}
+        onEndReachedThreshold={0.5}
+        onEndReached={() => fetchMorePoets(data)}
       />
     </View>
   ) : null);

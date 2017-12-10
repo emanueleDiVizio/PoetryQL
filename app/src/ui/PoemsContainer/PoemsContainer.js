@@ -9,12 +9,16 @@ type Poem = {
   title: string,
   author: string,
 };
-type Props = {
+
+type Data = {
   poem: Poem,
+};
+type Props = {
+  data: Data,
   show: boolean,
 };
 
-export default ({ poem, show }: Props) => {
+export default ({ data: { poem }, show }: Props) => {
   if (show) {
     return (
       <View
@@ -49,12 +53,16 @@ export default ({ poem, show }: Props) => {
           <ScrollView>
             <View
               style={{
-                height: 52,
+                marginTop: 16,
+                marginBottom: 52,
               }}
-            />
-            {poem.lines.map(line => (
-              <Text style={{ color: 'white', textAlign: 'center' }}>{line}</Text>
-            ))}
+            >
+              {poem.lines.map((line, index) => (
+                <Text style={{ color: 'white', textAlign: 'center' }} key={index}>
+                  {line}
+                </Text>
+              ))}
+            </View>
           </ScrollView>
         </View>
       </View>
