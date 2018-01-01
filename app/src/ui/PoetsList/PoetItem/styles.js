@@ -11,6 +11,8 @@ export default StyleSheet.create({
   },
   text: {
     marginTop: '2%',
+    marginLeft: '5%',
+    marginRight: '5%',
     color: 'white',
     ...Fonts.style.description,
     textAlign: 'center',

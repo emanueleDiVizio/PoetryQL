@@ -12,30 +12,49 @@ const size = {
   tiny: 8.5,
 };
 
+const baseText = {
+  backgroundColor: 'transparent',
+};
+
 const style = {
   h1: {
     fontSize: size.h1,
+    ...baseText,
   },
   h2: {
     fontSize: size.h2,
+    ...baseText,
+
   },
   h3: {
     fontSize: size.h3,
+    ...baseText,
+
   },
   h4: {
     fontSize: size.h4,
+    ...baseText,
+
   },
   h5: {
     fontSize: size.h5,
+    ...baseText,
+
   },
   h6: {
     fontSize: size.h6,
+    ...baseText,
+
   },
   normal: {
     fontSize: size.regular,
+    ...baseText,
+
   },
   description: {
     fontSize: size.medium,
+    ...baseText,
+
   },
 };
 

@@ -1,6 +1,6 @@
 //  @ flow
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Styles from './styles';
 
@@ -23,13 +23,16 @@ export default ({ data: { poem }, show, onClose }: Props) => {
   if (show) {
     return (
       <View style={Styles.overlayContainer}>
-        <MaterialIcons style={Styles.icon} name="close" size={32} color="white" onPress={onClose} />
-
+      
         <View style={Styles.topTextContainer}>
           <Text style={Styles.authorText}>{poem.author}</Text>
-
           <Text style={Styles.titleText}>{poem.title}</Text>
         </View>
+
+        <TouchableOpacity style={Styles.icon}  onPress={onClose}>
+          <MaterialIcons name="close" size={32} color="white"  />
+        </TouchableOpacity>
+
         <View style={Styles.poemScrollContainer}>
           <ScrollView>
             <View style={Styles.poemContainer}>

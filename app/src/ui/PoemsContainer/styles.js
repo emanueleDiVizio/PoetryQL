@@ -12,10 +12,14 @@ export default StyleSheet.create({
     top: 24,
   },
 
-  icon: { position: 'absolute', top: 24, right: 24 },
+  icon: {
+    position: 'absolute', top: 24, right: 24, backgroundColor: 'transparent',
+  },
   topTextContainer: {
     flex: 0,
     marginTop: '5%',
+    marginLeft: '5%',
+    marginRight: '5%',
     alignItems: 'center',
   },
   authorText: {
